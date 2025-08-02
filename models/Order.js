@@ -32,7 +32,12 @@ const orderSchema = mongoose.Schema(
     taxPrice: { type: Number, required: true, default: 0.0 },
     shippingPrice: { type: Number, required: true, default: 0.0 },
     totalPrice: { type: Number, required: true, default: 0.0 },
-    isPaid: { type: Boolean, default: false },
+    isPaid: { type: Boolean, default: true },
+    status: {
+      type: String,
+      enum: ["pending", "processing", "shipped", "completed"],
+      default: "pending",
+    },
     paidAt: { type: Date },
     isDelivered: { type: Boolean, default: false },
     deliveredAt: { type: Date },

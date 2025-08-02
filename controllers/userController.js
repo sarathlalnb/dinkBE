@@ -27,3 +27,20 @@ export const updateUserProfile = async (req, res) => {
     });
   } else res.status(404).json({ message: "User not found" });
 };
+export const getUsers = async (req, res) => {
+  const users = await User.find({});
+  res.json(users);
+};
+
+export const deleteUser = async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if (user) {
+    if (user.isAdmin) {
+      return res.status(400).json({ message: "Cannot delete admin user" });
+    }
+    await User.deleteOne({ _id: req.params.id });
+    res.json({ message: "User deleted" });
+  } else {
+    res.status(404).json({ message: "User not found" });
+  }
+};

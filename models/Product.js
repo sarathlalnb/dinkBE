@@ -22,6 +22,7 @@ const productSchema = mongoose.Schema(
     rating: { type: Number, default: 0 },
     numReviews: { type: Number, default: 0 },
     reviews: [reviewSchema],
+    color: { type: String, required: true },
     user: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "User" },
   },
   { timestamps: true }
